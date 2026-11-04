@@ -1,0 +1,325 @@
+:root {
+  color-scheme: dark;
+  --fondo: #10130f;
+  --panel: #171b16;
+  --panel-claro: #1d231c;
+  --borde: #30382c;
+  --texto: #f0efe4;
+  --suave: #9da492;
+  --verde: #b6e36a;
+  --verde-oscuro: #354a27;
+  --rojo: #ef7966;
+  --oro: #e7bd69;
+  --morado: #c4a0f4;
+  --radio: 8px;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: var(--fondo);
+  color: var(--texto);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 50% -20%, #26301e 0, transparent 53%),
+    var(--fondo);
+}
+
+button, input { font: inherit; }
+button { color: inherit; }
+button:focus-visible, input:focus-visible, a:focus-visible {
+  outline: 2px solid var(--verde);
+  outline-offset: 3px;
+}
+
+.ruido-fondo {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  opacity: .14;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E");
+}
+
+.barra-superior, .pie {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 22px 5.2%;
+}
+
+.barra-superior { border-bottom: 1px solid #ffffff0d; }
+.marca {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  color: var(--texto);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-decoration: none;
+}
+.marca-icono { color: var(--verde); font-size: 20px; }
+.marca-acento { color: var(--verde); }
+.version, .pie, .etiqueta, .micro, .estadistica-etiqueta {
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 10px;
+  letter-spacing: .1em;
+}
+.version { color: var(--suave); }
+.version i {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin: 0 9px 2px;
+  border-radius: 50%;
+  background: var(--verde);
+}
+
+.aplicacion { width: min(1120px, 90%); min-height: calc(100vh - 150px); margin: 0 auto; }
+.pie { color: #777e70; font-size: 9px; }
+.portada {
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  align-items: center;
+  gap: 8%;
+  min-height: 610px;
+  padding: 65px 2%;
+}
+.etiqueta { color: var(--verde); }
+.portada h1, .titulo-pagina {
+  margin: 18px 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-weight: 600;
+  letter-spacing: -.055em;
+}
+.portada h1 { max-width: 650px; font-size: clamp(42px, 6vw, 76px); line-height: .99; }
+.portada h1 em { color: var(--verde); font-style: normal; }
+.texto-intro { max-width: 440px; color: #aeb3a4; font-size: 15px; line-height: 1.8; }
+.acciones-portada { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 32px; }
+.ilustracion {
+  position: relative;
+  display: grid;
+  min-height: 360px;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid #45513a;
+  border-radius: 50% 50% 12px 12px;
+  background:
+    radial-gradient(ellipse at 50% 70%, #323c25 0, #1a2017 42%, #121610 72%);
+}
+.ilustracion::before, .ilustracion::after {
+  position: absolute;
+  width: 230px;
+  height: 230px;
+  border: 1px solid #778d4b52;
+  border-radius: 50%;
+  content: "";
+}
+.ilustracion::after { width: 290px; height: 290px; }
+.portal { z-index: 1; color: var(--verde); font-size: 122px; text-shadow: 0 0 50px #a6d55a80; }
+.sello {
+  position: absolute;
+  right: 7%;
+  bottom: 9%;
+  padding: 10px 12px;
+  border: 1px solid var(--borde);
+  background: #10130fe8;
+  color: var(--oro);
+  font: 10px Consolas, "Courier New", monospace;
+  letter-spacing: .08em;
+  transform: rotate(-4deg);
+}
+.boton {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 17px;
+  border: 1px solid transparent;
+  border-radius: var(--radio);
+  background: var(--verde);
+  color: #17200f;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  transition: transform .16s, filter .16s, border-color .16s;
+}
+.boton:hover { filter: brightness(1.09); transform: translateY(-1px); }
+.boton:disabled { cursor: not-allowed; filter: grayscale(.7); opacity: .48; transform: none; }
+.boton-secundario { border-color: var(--borde); background: var(--panel); color: var(--texto); }
+.boton-peligro { border-color: #78463e; background: #2b1d1b; color: #ff9a88; }
+.boton-texto { min-height: 34px; padding: 0 10px; border: 0; background: transparent; color: var(--suave); }
+.boton-pequeno { min-height: 34px; padding: 0 11px; font-size: 11px; }
+
+.pantalla-titulo { padding: 40px 0 22px; }
+.titulo-pagina { margin: 10px 0 5px; font-size: clamp(30px, 4vw, 43px); }
+.subtitulo { margin: 0; color: var(--suave); font-size: 14px; }
+.panel { border: 1px solid var(--borde); border-radius: var(--radio); background: #171b16ed; }
+.formulario { max-width: 810px; margin: 0 auto 60px; padding: 25px; }
+.campo-nombre { display: block; margin-bottom: 20px; color: var(--suave); font-size: 12px; }
+.campo-nombre input {
+  display: block;
+  width: 100%;
+  height: 45px;
+  margin-top: 8px;
+  padding: 0 12px;
+  border: 1px solid var(--borde);
+  border-radius: 5px;
+  background: #11140f;
+  color: var(--texto);
+}
+.rejilla-clases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.tarjeta-clase {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  background: #121610;
+  cursor: pointer;
+  text-align: left;
+}
+.tarjeta-clase.seleccionada { border-color: var(--verde); background: #252e1d; }
+.clase-icono { font-size: 24px; }
+.tarjeta-clase h3 { margin: 9px 0 4px; font-family: "Segoe UI", Arial, sans-serif; font-size: 17px; }
+.tarjeta-clase p { min-height: 36px; margin: 0; color: var(--suave); font-size: 11px; line-height: 1.5; }
+.mini-estadisticas { display: grid; grid-template-columns: repeat(2, 1fr); gap: 5px; margin-top: 13px; color: #d3d5ca; font: 10px Consolas, "Courier New", monospace; }
+.bloque-atributos { margin: 27px 0 20px; padding-top: 21px; border-top: 1px solid var(--borde); }
+.encabezado-atributos { display: flex; justify-content: space-between; margin-bottom: 11px; font-size: 13px; }
+.contador-puntos { color: var(--verde); font: 11px Consolas, "Courier New", monospace; }
+.fila-atributo { display: grid; grid-template-columns: 1fr auto 38px; align-items: center; gap: 12px; padding: 8px 0; color: #d9dbd1; font-size: 13px; }
+.controles-atributo { display: flex; gap: 7px; }
+.contador-atributo { color: var(--verde); font: 12px Consolas, "Courier New", monospace; text-align: right; }
+.pie-formulario { display: flex; justify-content: flex-end; gap: 9px; margin-top: 20px; }
+
+.barra-aventura {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 17px 0;
+  border-bottom: 1px solid var(--borde);
+}
+.marca-aventura { font-family: "Segoe UI", Arial, sans-serif; font-size: 15px; font-weight: 700; }
+.marca-aventura span { color: var(--verde); }
+.acciones-rapidas { display: flex; gap: 7px; }
+.rejilla-juego { display: grid; grid-template-columns: minmax(0, 1fr) 285px; gap: 18px; padding: 22px 0 50px; }
+.columna-central { min-width: 0; }
+.tarjeta-sala { position: relative; min-height: 380px; padding: 25px; overflow: hidden; }
+.tarjeta-sala::after {
+  position: absolute;
+  right: -80px;
+  bottom: -155px;
+  width: 330px;
+  height: 330px;
+  border: 1px solid #697b442b;
+  border-radius: 50%;
+  box-shadow: 0 0 0 32px #697b4411, 0 0 0 64px #697b440b;
+  content: "";
+  pointer-events: none;
+}
+.encabezado-sala { display: flex; justify-content: space-between; }
+.micro { color: var(--suave); }
+.texto-sala { position: relative; z-index: 1; max-width: 600px; margin-top: 37px; }
+.texto-sala h2 { margin: 0 0 10px; font: 600 clamp(25px, 4vw, 36px) "Segoe UI", Arial, sans-serif; letter-spacing: -.035em; }
+.texto-sala p { color: #b8bdaf; font-size: 14px; line-height: 1.7; }
+.enemigo-datos { max-width: 540px; margin-top: 27px; }
+.fila-barra { display: flex; justify-content: space-between; margin-bottom: 7px; font: 11px Consolas, "Courier New", monospace; }
+.barra-vida { height: 7px; overflow: hidden; border-radius: 5px; background: #3a2825; }
+.barra-vida span { display: block; height: 100%; border-radius: inherit; background: var(--rojo); transition: width .3s; }
+.barra-vida.jugador { background: #293323; }
+.barra-vida.jugador span { background: var(--verde); }
+.barra-vida.mana { margin-top: 8px; background: #29233a; }
+.barra-vida.mana span { background: var(--morado); }
+.acciones-combate, .acciones-evento { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.acciones-combate .boton { min-height: 39px; padding: 0 12px; font-size: 11px; }
+.registro {
+  max-height: 165px;
+  margin-top: 14px;
+  padding: 14px 16px;
+  overflow: auto;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  background: #121510;
+}
+.registro h3 { margin: 0 0 8px; color: var(--suave); font: 10px Consolas, "Courier New", monospace; letter-spacing: .1em; }
+.entrada-registro { margin: 5px 0; color: #c2c6b8; font-size: 11px; line-height: 1.5; }
+.entrada-registro:last-child { color: var(--verde); }
+.panel-personaje { padding: 18px; }
+.encabezado-personaje { display: flex; align-items: center; gap: 12px; padding-bottom: 15px; border-bottom: 1px solid var(--borde); }
+.avatar { display: grid; width: 42px; height: 42px; place-items: center; border: 1px solid #576344; border-radius: 6px; background: #273021; font-size: 22px; }
+.nombre-personaje { margin: 0 0 3px; font: 600 15px "Segoe UI", Arial, sans-serif; }
+.clase-personaje { color: var(--suave); font-size: 11px; }
+.nivel-personaje { margin-left: auto; color: var(--verde); font: 11px Consolas, "Courier New", monospace; }
+.bloque-barras { margin-top: 14px; }
+.estadisticas-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 11px 8px; margin-top: 17px; padding: 15px 0; border-top: 1px solid var(--borde); border-bottom: 1px solid var(--borde); }
+.estadistica-etiqueta { display: block; margin-bottom: 4px; color: var(--suave); font-size: 9px; }
+.estadistica-valor { font: 13px Consolas, "Courier New", monospace; }
+.oro-personaje { display: flex; justify-content: space-between; margin-top: 14px; font-size: 12px; }
+.oro-personaje strong { color: var(--oro); font: 12px Consolas, "Courier New", monospace; }
+.seccion-equipo { margin-top: 19px; }
+.seccion-titulo { margin: 0 0 10px; color: var(--suave); font: 10px Consolas, "Courier New", monospace; letter-spacing: .1em; }
+.ranura-equipo { display: flex; justify-content: space-between; gap: 8px; padding: 8px 0; border-top: 1px solid #ffffff0b; color: #d3d5ca; font-size: 11px; }
+.ranura-equipo button { padding: 0; border: 0; background: transparent; color: var(--verde); cursor: pointer; font: inherit; text-align: right; }
+.resumen-mochila { margin-top: 18px; }
+.resumen-mochila ul { display: grid; gap: 7px; margin: 0; padding: 0; list-style: none; }
+.resumen-mochila li { display: flex; justify-content: space-between; gap: 8px; color: #d3d5ca; font-size: 11px; }
+.rareza { color: var(--suave); font: 9px Consolas, "Courier New", monospace; text-transform: uppercase; }
+.rareza.raro { color: #87c6ee; }
+.rareza.epico { color: var(--morado); }
+.acciones-panel { display: grid; gap: 8px; margin-top: 18px; }
+.acciones-panel .boton { width: 100%; }
+.zona-listas { padding: 25px 0 55px; }
+.rejilla-objetos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.tarjeta-objeto { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 13px; border: 1px solid var(--borde); border-radius: 6px; background: var(--panel); }
+.tarjeta-objeto h3 { margin: 0 0 5px; font-size: 12px; }
+.tarjeta-objeto p { margin: 0; color: var(--suave); font-size: 10px; line-height: 1.5; }
+.texto-vacio { padding: 22px; border: 1px dashed var(--borde); border-radius: var(--radio); color: var(--suave); font-size: 13px; text-align: center; }
+.aviso { padding: 11px 13px; border-left: 2px solid var(--oro); background: #211d14; color: #d8c99e; font-size: 11px; line-height: 1.6; }
+.pantalla-final { max-width: 620px; margin: 100px auto; padding: 42px; text-align: center; }
+.pantalla-final .icono-final { color: var(--verde); font-size: 50px; }
+.pantalla-final h1 { font: 600 40px "Segoe UI", Arial, sans-serif; }
+.pantalla-final p { color: var(--suave); line-height: 1.7; }
+.toque-jefe { color: var(--oro); }
+.oculto { display: none !important; }
+
+@media (max-width: 800px) {
+  .rejilla-juego { grid-template-columns: 1fr; }
+  .panel-personaje { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 22px; }
+  .encabezado-personaje, .bloque-barras, .estadisticas-grid, .oro-personaje { grid-column: 1 / -1; }
+  .seccion-equipo, .resumen-mochila { margin-top: 15px; }
+  .acciones-panel { grid-column: 1 / -1; grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 600px) {
+  .barra-superior, .pie { padding-right: 5%; padding-left: 5%; }
+  .version { font-size: 8px; }
+  .aplicacion { width: 90%; }
+  .portada { grid-template-columns: 1fr; gap: 32px; padding: 54px 0; }
+  .portada h1 { font-size: 54px; }
+  .ilustracion { min-height: 240px; }
+  .portal { font-size: 88px; }
+  .rejilla-clases { grid-template-columns: 1fr; }
+  .tarjeta-clase { display: grid; grid-template-columns: 38px 1fr; align-items: center; column-gap: 9px; }
+  .tarjeta-clase .clase-icono { grid-row: span 2; }
+  .tarjeta-clase h3 { margin: 0; }
+  .tarjeta-clase p { min-height: 0; }
+  .mini-estadisticas { grid-column: 2; }
+  .formulario { padding: 17px; }
+  .barra-aventura { align-items: flex-start; }
+  .acciones-rapidas { flex-wrap: wrap; justify-content: flex-end; }
+  .acciones-rapidas .boton { min-height: 34px; padding: 0 9px; font-size: 10px; }
+  .tarjeta-sala { min-height: 360px; padding: 18px; }
+  .panel-personaje { grid-template-columns: 1fr; }
+  .encabezado-personaje, .bloque-barras, .estadisticas-grid, .oro-personaje,
+  .acciones-panel { grid-column: auto; }
+  .acciones-panel { grid-template-columns: 1fr; }
+  .rejilla-objetos { grid-template-columns: 1fr; }
+  .pie { align-items: flex-start; gap: 12px; font-size: 8px; }
+}
